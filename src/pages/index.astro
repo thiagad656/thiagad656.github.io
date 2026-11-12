@@ -8,7 +8,9 @@ const perfil = (await getEntry('perfil', 'perfil'))!.data;
 const trabalhos = (await getCollection('trabalho')).sort((a, b) => a.data.ordem - b.data.ordem);
 const trajetoria = (await getCollection('trajetoria')).sort((a, b) => a.data.ordem - b.data.ordem);
 const certificacoes = (await getCollection('certificacoes')).sort((a, b) => a.data.ordem - b.data.ordem);
-const curriculos = (await getCollection('curriculos')).filter((c) => c.data.url);
+const curriculos = (await getCollection('curriculos'))
+  .filter((c) => c.data.url)
+  .sort((a, b) => a.data.ordem - b.data.ordem);
 
 const caderno = criarCaderno();
 const apresentacao = caderno.marcar(perfil.apresentacao, perfil.fontes, 'perfil');
@@ -264,6 +266,8 @@ const contatos = [
     margin-left: 0.5rem;
     text-decoration: none;
     vertical-align: 0.15em;
+    white-space: nowrap;
+    display: inline-block;
   }
   .selo::before {
     content: '✓ ';

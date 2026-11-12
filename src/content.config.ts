@@ -74,6 +74,7 @@ const curriculos = defineCollection({
   schema: z.object({
     rotulo: z.string(),
     url: z.string().default(''),
+    ordem: z.number().default(99),
   }),
 });
 
