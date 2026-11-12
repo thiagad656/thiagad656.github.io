@@ -2,6 +2,7 @@
 import { getCollection, getEntry } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import Fontes from '../components/Fontes.astro';
+import Icone from '../components/Icone.astro';
 import { criarCaderno } from '../lib/fontes';
 
 const perfil = (await getEntry('perfil', 'perfil'))!.data;
@@ -20,10 +21,10 @@ const itens = trabalhos.map((t) => ({
 }));
 
 const contatos = [
-  perfil.email && { rotulo: 'E-mail', valor: perfil.email, url: `mailto:${perfil.email}` },
-  perfil.linkedin && { rotulo: 'LinkedIn', valor: perfil.linkedin.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, ''), url: perfil.linkedin },
-  perfil.github && { rotulo: 'GitHub', valor: perfil.github.replace(/^https?:\/\//, ''), url: perfil.github },
-].filter(Boolean) as { rotulo: string; valor: string; url: string }[];
+  perfil.email && { icone: 'email', rotulo: 'E-mail', valor: perfil.email, url: `mailto:${perfil.email}` },
+  perfil.linkedin && { icone: 'linkedin', rotulo: 'LinkedIn', valor: perfil.linkedin.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, ''), url: perfil.linkedin },
+  perfil.github && { icone: 'github', rotulo: 'GitHub', valor: perfil.github.replace(/^https?:\/\//, ''), url: perfil.github },
+].filter(Boolean) as { icone: 'email' | 'linkedin' | 'github'; rotulo: string; valor: string; url: string }[];
 ---
 
 <Base
@@ -118,7 +119,10 @@ const contatos = [
       {
         contatos.map((c) => (
           <div>
-            <dt>{c.rotulo}</dt>
+            <dt>
+              <Icone nome={c.icone} />
+              {c.rotulo}
+            </dt>
             <dd>
               <a href={c.url}>{c.valor}</a>
             </dd>
@@ -128,7 +132,10 @@ const contatos = [
       {
         curriculos.length > 0 && (
           <div>
-            <dt>Currículo</dt>
+            <dt>
+              <Icone nome="curriculo" />
+              Currículo
+            </dt>
             <dd>
               {curriculos.map((c, i) => (
                 <>
@@ -285,6 +292,11 @@ const contatos = [
   }
   dt {
     color: var(--texto-suave);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    align-self: start;
+    padding-top: 0.2rem;
   }
   dd {
     margin: 0;

@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import { getEntry } from 'astro:content';
+import Icone from '../components/Icone.astro';
 
 interface Props {
   titulo: string;
@@ -51,21 +52,50 @@ const base = naHome ? '' : '/';
     <main id="conteudo">
       <slot />
     </main>
-    <footer class="rodape">
-      <p>Última atualização: {atualizado}.</p>
-      <p>
-        Feito com Astro.{' '}
-        <a href="https://github.com/thiagad656/thiagad656.github.io">Código no GitHub</a>.
-      </p>
+    <footer class="faixa-rodape">
+      <div class="rodape">
+        <ul class="redes" aria-label="Contato">
+          {
+            perfil.linkedin && (
+              <li>
+                <a href={perfil.linkedin}>
+                  <Icone nome="linkedin" />
+                  LinkedIn
+                </a>
+              </li>
+            )
+          }
+          {
+            perfil.github && (
+              <li>
+                <a href={perfil.github}>
+                  <Icone nome="github" />
+                  GitHub
+                </a>
+              </li>
+            )
+          }
+          {
+            perfil.email && (
+              <li>
+                <a href={`mailto:${perfil.email}`}>
+                  <Icone nome="email" />
+                  E-mail
+                </a>
+              </li>
+            )
+          }
+        </ul>
+        <p>Última atualização: {atualizado}.</p>
+        <p>
+          Feito com Astro.{' '}
+          <a href="https://github.com/thiagad656/thiagad656.github.io">Código no GitHub</a>.
+        </p>
+      </div>
     </footer>
     <script>
-      // Barra fixa: ganha uma linha embaixo quando a página rola.
       // Na home, o nome só aparece na barra depois que o título grande sai da tela.
-      const barra = document.querySelector('[data-barra]');
       const marca = document.querySelector('[data-marca]');
-      const atualizarBarra = () => barra?.classList.toggle('rolada', window.scrollY > 8);
-      atualizarBarra();
-      window.addEventListener('scroll', atualizarBarra, { passive: true });
 
       const titulo = document.getElementById('nome');
       if (marca?.dataset.naHome && titulo) {
@@ -95,12 +125,8 @@ const base = naHome ? '' : '/';
     position: sticky;
     top: 0;
     z-index: 10;
-    background: var(--fundo);
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.2s;
-  }
-  .barra.rolada {
-    border-bottom-color: var(--linha);
+    background: var(--preto);
+    border-bottom: 1px solid var(--linha);
   }
   .topo,
   main,
@@ -128,7 +154,6 @@ const base = naHome ? '' : '/';
     visibility: hidden;
   }
   @media (prefers-reduced-motion: reduce) {
-    .barra,
     .marca {
       transition: none;
     }
@@ -153,12 +178,34 @@ const base = naHome ? '' : '/';
   nav a:hover {
     color: var(--texto);
   }
-  .rodape {
+  .faixa-rodape {
     margin-top: 5rem;
-    padding-block: 2rem 3rem;
+    background: var(--preto);
     border-top: 1px solid var(--linha);
+  }
+  .rodape {
+    padding-block: 2.5rem 3rem;
     color: var(--texto-suave);
     font-size: 0.85rem;
+  }
+  .redes {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.75rem;
+    padding: 0;
+    margin: 0 0 1.75rem;
+    font-size: 0.95rem;
+  }
+  .redes a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    color: var(--texto);
+    text-decoration: none;
+  }
+  .redes a:hover {
+    color: var(--destaque);
   }
   .rodape p {
     margin: 0 0 0.25rem;

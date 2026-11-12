@@ -1,0 +1,23 @@
+---
+// Ícones Tabler (licença MIT), embutidos no HTML na hora do build.
+import github from '@tabler/icons/outline/brand-github.svg?raw';
+import linkedin from '@tabler/icons/outline/brand-linkedin.svg?raw';
+import email from '@tabler/icons/outline/mail.svg?raw';
+import curriculo from '@tabler/icons/outline/file-cv.svg?raw';
+
+const icones = { github, linkedin, email, curriculo };
+
+interface Props {
+  nome: keyof typeof icones;
+  tamanho?: number;
+}
+
+const { nome, tamanho = 18 } = Astro.props;
+const svg = icones[nome]
+  .replace(/\s*class="[^"]*"/, '')
+  .replace(/width="24"/, `width="${tamanho}"`)
+  .replace(/height="24"/, `height="${tamanho}" aria-hidden="true" focusable="false" class="icone"`)
+  .replace(/stroke-width="2"/, 'stroke-width="1.75"');
+---
+
+<Fragment set:html={svg} />

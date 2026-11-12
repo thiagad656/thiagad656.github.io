@@ -8,6 +8,7 @@
 /* Paleta: tinta azul com destaque azul-céu.
    Para testar outra paleta, troque só estes valores. */
 :root {
+  --preto: #07090c;
   --fundo: #11151c;
   --superficie: #181e28;
   --linha: #283040;
