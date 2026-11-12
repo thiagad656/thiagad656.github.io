@@ -52,7 +52,6 @@ Copie um arquivo de `src/conteudo/trabalho/`, renomeie (o nome vira o endereço:
 
 ## Antes do lançamento
 
-- [ ] `perfil.yaml`: e-mail de contato
 - [ ] `perfil.yaml`: id do vídeo do pitch em inglês
 - [ ] `curriculos.yaml`: links dos currículos PT e EN
 - [ ] `certificacoes.yaml`: links de verificação

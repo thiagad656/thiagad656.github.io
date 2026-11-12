@@ -18,3 +18,15 @@
   nome: SQL Associate
   emissor: DataCamp
   verificacao: ""
+
+- id: data-analyst-associate
+  ordem: 4
+  nome: Data Analyst Associate
+  emissor: DataCamp
+  verificacao: ""
+
+- id: google-it-automation
+  ordem: 5
+  nome: Google IT Automation with Python Professional Certificate
+  emissor: Coursera / Google
+  verificacao: ""
