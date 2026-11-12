@@ -1,9 +1,9 @@
 # Links dos currículos (1 página). Campo vazio não aparece no site.
 
 - id: pt
-  rotulo: Currículo em português
-  url: ""
+  rotulo: Currículo em português (PDF, 1 página)
+  url: /cv/thiago-da-silva-cv-pt.pdf
 
 - id: en
-  rotulo: Résumé in English
-  url: ""
+  rotulo: Résumé in English (PDF, 1 page)
+  url: /cv/thiago-da-silva-cv-en.pdf

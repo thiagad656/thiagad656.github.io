@@ -22,7 +22,7 @@ npm run build    # gera o site final em dist/
 | `src/conteudo/trabalho/*.md` | Um arquivo por case ou projeto |
 | `src/conteudo/trajetoria.yaml` | Linha do tempo |
 | `src/conteudo/certificacoes.yaml` | Certificações e links de verificação |
-| `src/conteudo/curriculos.yaml` | Links dos currículos |
+| `src/conteudo/curriculos.yaml` | Links dos currículos (os PDFs ficam em `public/cv/`, sem telefone) |
 | `src/styles/global.css` | Paleta (no topo do arquivo) e tipografia |
 
 Campo vazio não aparece no site.
@@ -53,7 +53,6 @@ Copie um arquivo de `src/conteudo/trabalho/`, renomeie (o nome vira o endereço:
 ## Antes do lançamento
 
 - [ ] `perfil.yaml`: id do vídeo do pitch em inglês
-- [ ] `curriculos.yaml`: links dos currículos PT e EN
 - [ ] `certificacoes.yaml`: links de verificação
 - [ ] Revisar o "O que eu faria diferente" dos dois cases e trocar `rascunho: true` para `false`
 - [ ] Lending Club: print ou GIF do dashboard (opcional)
