@@ -17,13 +17,13 @@
   ordem: 3
   nome: SQL Associate
   emissor: DataCamp
-  verificacao: ""
+  verificacao: https://www.datacamp.com/certificate/SQA0018797778866
 
 - id: data-analyst-associate
   ordem: 4
   nome: Data Analyst Associate
   emissor: DataCamp
-  verificacao: ""
+  verificacao: https://www.datacamp.com/certificate/DAA0010174339105
 
 - id: google-it-automation
   ordem: 5

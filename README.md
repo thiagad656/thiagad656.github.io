@@ -53,7 +53,6 @@ Copie um arquivo de `src/conteudo/trabalho/`, renomeie (o nome vira o endereço:
 ## Antes do lançamento
 
 - [ ] `perfil.yaml`: id do vídeo do pitch em inglês
-- [ ] `certificacoes.yaml`: links de verificação
 - [ ] Revisar o "O que eu faria diferente" dos dois cases e trocar `rascunho: true` para `false`
 - [ ] Lending Club: print ou GIF do dashboard (opcional)
 
