@@ -1,0 +1,25 @@
+{
+  "name": "thiagad656-site",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thiagad656/thiagad656.github.io.git"
+  },
+  "bugs": {
+    "url": "https://github.com/thiagad656/thiagad656.github.io/issues"
+  },
+  "homepage": "https://github.com/thiagad656/thiagad656.github.io#readme",
+  "dependencies": {
+    "@fontsource/jetbrains-mono": "^5.3.0",
+    "@fontsource/newsreader": "^5.3.0",
+    "@fontsource/source-sans-3": "^5.3.1",
+    "astro": "^7.4.11"
+  },
+  "type": "module",
+  "private": true
+}

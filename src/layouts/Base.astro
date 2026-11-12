@@ -1,0 +1,120 @@
+---
+import '../styles/global.css';
+import { getEntry } from 'astro:content';
+
+interface Props {
+  titulo: string;
+  descricao: string;
+}
+
+const { titulo, descricao } = Astro.props;
+const perfil = (await getEntry('perfil', 'perfil'))!.data;
+
+const atualizado = new Intl.DateTimeFormat('pt-BR', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+  timeZone: 'America/Sao_Paulo',
+}).format(new Date());
+
+const naHome = Astro.url.pathname === '/';
+const base = naHome ? '' : '/';
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{titulo}</title>
+    <meta name="description" content={descricao} />
+    <meta name="theme-color" content="#0e1a1e" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+    <meta property="og:title" content={titulo} />
+    <meta property="og:description" content={descricao} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+  </head>
+  <body>
+    <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+    <header class="topo">
+      <a class="marca" href="/" aria-current={naHome ? 'page' : undefined}>{perfil.nome}</a>
+      <nav aria-label="Principal">
+        <a href={`${base}#trabalho`}>Trabalho</a>
+        <a href={`${base}#trajetoria`}>Trajetória</a>
+        <a href={`${base}#contato`}>Contato</a>
+      </nav>
+    </header>
+    <main id="conteudo">
+      <slot />
+    </main>
+    <footer class="rodape">
+      <p>Última atualização: {atualizado}.</p>
+      <p>
+        Feito com Astro.{' '}
+        <a href="https://github.com/thiagad656/thiagad656.github.io">Código no GitHub</a>.
+      </p>
+    </footer>
+  </body>
+</html>
+
+<style>
+  .pular {
+    position: absolute;
+    left: 1rem;
+    top: -3rem;
+    background: var(--destaque);
+    color: var(--fundo);
+    padding: 0.4rem 0.8rem;
+    z-index: 1;
+  }
+  .pular:focus {
+    top: 1rem;
+  }
+  .topo,
+  main,
+  .rodape {
+    max-width: var(--medida);
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+  .topo {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-block: 1.5rem;
+  }
+  .marca {
+    font-family: var(--serifa);
+    font-size: 1.15rem;
+    text-decoration: none;
+  }
+  nav {
+    display: flex;
+    gap: 1.25rem;
+  }
+  nav a {
+    color: var(--texto-suave);
+    text-decoration: none;
+    font-size: 0.95rem;
+  }
+  nav a:hover {
+    color: var(--texto);
+  }
+  .rodape {
+    margin-top: 5rem;
+    padding-block: 2rem 3rem;
+    border-top: 1px solid var(--linha);
+    color: var(--texto-suave);
+    font-size: 0.85rem;
+  }
+  .rodape p {
+    margin: 0 0 0.25rem;
+  }
+  .rodape a {
+    color: var(--texto-suave);
+  }
+</style>

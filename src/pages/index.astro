@@ -1,0 +1,295 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Fontes from '../components/Fontes.astro';
+import { criarCaderno } from '../lib/fontes';
+
+const perfil = (await getEntry('perfil', 'perfil'))!.data;
+const trabalhos = (await getCollection('trabalho')).sort((a, b) => a.data.ordem - b.data.ordem);
+const trajetoria = (await getCollection('trajetoria')).sort((a, b) => a.data.ordem - b.data.ordem);
+const certificacoes = (await getCollection('certificacoes')).sort((a, b) => a.data.ordem - b.data.ordem);
+const curriculos = (await getCollection('curriculos')).filter((c) => c.data.url);
+
+const caderno = criarCaderno();
+const apresentacao = caderno.marcar(perfil.apresentacao, perfil.fontes, 'perfil');
+const itens = trabalhos.map((t) => ({
+  ...t,
+  lide: caderno.marcar(t.data.lide, t.data.fontes, t.id),
+}));
+
+const contatos = [
+  perfil.email && { rotulo: 'E-mail', valor: perfil.email, url: `mailto:${perfil.email}` },
+  perfil.linkedin && { rotulo: 'LinkedIn', valor: perfil.linkedin.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, ''), url: perfil.linkedin },
+  perfil.github && { rotulo: 'GitHub', valor: perfil.github.replace(/^https?:\/\//, ''), url: perfil.github },
+].filter(Boolean) as { rotulo: string; valor: string; url: string }[];
+---
+
+<Base
+  titulo={`${perfil.nome}, ${perfil.cargo}`}
+  descricao={`${perfil.frase} Portfólio de ${perfil.nome}: governança de dados, SQL e Power BI.`}
+>
+  <section class="abertura">
+    <h1>{perfil.nome}</h1>
+    <p class="cargo">{perfil.cargo}</p>
+    <p class="frase">{perfil.frase}</p>
+    <p class="apresentacao" set:html={apresentacao} />
+  </section>
+
+  <section id="trabalho" aria-labelledby="titulo-trabalho">
+    <h2 id="titulo-trabalho">Trabalho</h2>
+    <ul class="trabalhos">
+      {
+        itens.map((t) => (
+          <li>
+            <p class="meta">
+              {t.data.tipo}, {t.data.periodo}
+            </p>
+            <h3>
+              <a href={`/trabalho/${t.id}/`}>{t.data.titulo}</a>
+            </h3>
+            <p set:html={t.lide} />
+            <p class="stack">Com {t.data.stack.join(', ')}.</p>
+            <a class="ler" href={`/trabalho/${t.id}/`}>
+              Ler o case completo<span class="sr-only">: {t.data.titulo}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  {
+    perfil.video && (
+      <section id="video" aria-labelledby="titulo-video">
+        <h2 id="titulo-video">Em vídeo</h2>
+        <div class="video">
+          <iframe
+            src={`https://www.youtube-nocookie.com/embed/${perfil.video.youtubeId}`}
+            title={perfil.video.titulo}
+            loading="lazy"
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          />
+        </div>
+        <p class="legenda">{perfil.video.legenda}</p>
+      </section>
+    )
+  }
+
+  <section id="trajetoria" aria-labelledby="titulo-trajetoria">
+    <h2 id="titulo-trajetoria">Trajetória</h2>
+    <ol class="linha-do-tempo">
+      {
+        trajetoria.map((t) => (
+          <li>
+            <span class="periodo">{t.data.periodo}</span>
+            <span>
+              <strong>{t.data.titulo}</strong>
+              <br />
+              {t.data.onde}
+            </span>
+          </li>
+        ))
+      }
+    </ol>
+
+    <h3 class="sub">Certificações</h3>
+    <ul class="certificacoes">
+      {
+        certificacoes.map((c) => (
+          <li>
+            {c.data.nome}, {c.data.emissor}
+            {c.data.verificacao && (
+              <a class="selo" href={c.data.verificacao}>
+                verificado<span class="sr-only"> no site do emissor</span>
+              </a>
+            )}
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section id="contato" aria-labelledby="titulo-contato">
+    <h2 id="titulo-contato">Contato</h2>
+    <dl class="contatos">
+      {
+        contatos.map((c) => (
+          <div>
+            <dt>{c.rotulo}</dt>
+            <dd>
+              <a href={c.url}>{c.valor}</a>
+            </dd>
+          </div>
+        ))
+      }
+      {
+        curriculos.length > 0 && (
+          <div>
+            <dt>Currículo</dt>
+            <dd>
+              {curriculos.map((c, i) => (
+                <>
+                  {i > 0 && <br />}
+                  <a href={c.data.url}>{c.data.rotulo}</a>
+                </>
+              ))}
+            </dd>
+          </div>
+        )
+      }
+    </dl>
+  </section>
+
+  <Fontes notas={caderno.notas} />
+</Base>
+
+<style>
+  .abertura {
+    padding-block: 3rem 2rem;
+  }
+  h1 {
+    font-size: clamp(2.6rem, 8vw, 4rem);
+    letter-spacing: -0.01em;
+  }
+  .cargo {
+    color: var(--texto-suave);
+    margin: 0.5rem 0 2.5rem;
+  }
+  .frase {
+    font-family: var(--serifa);
+    font-style: italic;
+    font-size: clamp(1.5rem, 4vw, 1.9rem);
+    line-height: 1.3;
+    max-width: 30ch;
+    margin-bottom: 1.25rem;
+  }
+  .apresentacao {
+    font-size: 1.1rem;
+    max-width: 38rem;
+  }
+  section {
+    scroll-margin-top: 1rem;
+  }
+  section + section {
+    margin-top: 4.5rem;
+  }
+  h2 {
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+  }
+  .trabalhos {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .trabalhos li {
+    padding-block: 1.75rem;
+    border-top: 1px solid var(--linha);
+  }
+  .trabalhos li:last-child {
+    border-bottom: 1px solid var(--linha);
+  }
+  .meta {
+    color: var(--texto-suave);
+    font-size: 0.9rem;
+    margin-bottom: 0.35rem;
+  }
+  h3 {
+    font-size: 1.45rem;
+    margin-bottom: 0.75rem;
+  }
+  h3 a {
+    text-decoration: none;
+  }
+  h3 a:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--destaque);
+  }
+  .stack {
+    color: var(--texto-suave);
+    font-size: 0.9rem;
+  }
+  .ler {
+    font-weight: 600;
+  }
+  .video {
+    aspect-ratio: 16 / 9;
+    background: var(--superficie);
+  }
+  .video iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+  .legenda {
+    color: var(--texto-suave);
+    font-size: 0.9rem;
+    margin-top: 0.75rem;
+  }
+  .linha-do-tempo {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 3rem;
+  }
+  .linha-do-tempo li {
+    display: grid;
+    grid-template-columns: minmax(8rem, 12rem) 1fr;
+    gap: 0.25rem 1.5rem;
+    padding-block: 0.9rem;
+    border-top: 1px solid var(--linha);
+  }
+  .periodo {
+    color: var(--texto-suave);
+    font-size: 0.9rem;
+    padding-top: 0.15rem;
+  }
+  .sub {
+    font-size: 1.2rem;
+    margin-bottom: 0.75rem;
+  }
+  .certificacoes {
+    padding-left: 1.1rem;
+  }
+  .certificacoes li {
+    margin-bottom: 0.35rem;
+  }
+  .selo {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--texto-suave);
+    border: 1px solid var(--linha);
+    border-radius: 3px;
+    padding: 0.05rem 0.4rem;
+    margin-left: 0.5rem;
+    text-decoration: none;
+    vertical-align: 0.15em;
+  }
+  .selo::before {
+    content: '✓ ';
+    color: var(--destaque);
+  }
+  .contatos {
+    margin: 0;
+  }
+  .contatos div {
+    display: grid;
+    grid-template-columns: minmax(8rem, 12rem) 1fr;
+    gap: 0 1.5rem;
+    padding-block: 0.6rem;
+    border-top: 1px solid var(--linha);
+  }
+  dt {
+    color: var(--texto-suave);
+  }
+  dd {
+    margin: 0;
+    overflow-wrap: anywhere;
+  }
+  @media (max-width: 34rem) {
+    .linha-do-tempo li,
+    .contatos div {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

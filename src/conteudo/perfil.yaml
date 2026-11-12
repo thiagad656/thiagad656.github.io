@@ -1,0 +1,24 @@
+# Dados da home e do contato.
+# Para marcar um número com fonte: [[texto que aparece|id-da-fonte]]
+
+perfil:
+  nome: Thiago da Silva
+  cargo: Analista de Dados (estágio)
+  frase: Antes do dashboard, eu pergunto se o dado está certo.
+  apresentacao: >-
+    Na T-Systems, tirei do papel o controle de [[~250|ativos]] ativos em
+    5 unidades e coloquei num painel Power BI que a liderança usa.
+  fontes:
+    ativos:
+      texto: Dado de cliente, arredondado. 247 ativos patrimoniados (204 celulares; 43 notebooks, tablets e desktops) em novembro de 2026.
+
+  # Contato. Campo vazio não aparece no site.
+  email: ""
+  linkedin: https://www.linkedin.com/in/thiago--dasilva/
+  github: https://github.com/thiagad656
+
+  # Vídeo de demonstração (YouTube não listado). Troque o id quando o pitch em inglês ficar pronto.
+  video:
+    youtubeId: U1-fgg8Igsg
+    titulo: Pitch do Lending Club Analytics
+    legenda: Apresentação executiva em português, 12 minutos. A versão em inglês está em produção.

@@ -1,0 +1,73 @@
+---
+import type { Nota } from '../lib/fontes';
+
+interface Props {
+  notas: Nota[];
+}
+
+const { notas } = Astro.props;
+---
+
+{
+  notas.length > 0 && (
+    <section class="fontes" aria-labelledby="titulo-fontes">
+      <h2 id="titulo-fontes">Fontes</h2>
+      <ol>
+        {notas.map((nota) => (
+          <li id={`fonte-${nota.numero}`}>
+            <span class="numero">[{nota.numero}]</span>
+            <span>
+              {nota.url ? <a href={nota.url}>{nota.texto}</a> : nota.texto}{' '}
+              <a class="voltar" href={`#ref-${nota.numero}`} aria-label={`Voltar ao dado ${nota.numero}`}>
+                ↩
+              </a>
+            </span>
+          </li>
+        ))}
+      </ol>
+    </section>
+  )
+}
+
+<style>
+  .fontes {
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--linha);
+    font-size: 0.85rem;
+    color: var(--texto-suave);
+  }
+  h2 {
+    font-size: 1.15rem;
+    color: var(--texto);
+    margin-bottom: 0.75rem;
+  }
+  ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  li {
+    display: grid;
+    grid-template-columns: 2.5rem 1fr;
+    padding: 0.35rem 0;
+    scroll-margin-top: 2rem;
+  }
+  li:target {
+    color: var(--texto);
+  }
+  li:target .numero {
+    color: var(--destaque);
+  }
+  .numero {
+    font-family: var(--mono);
+    font-variant-numeric: tabular-nums;
+  }
+  a {
+    color: inherit;
+  }
+  .voltar {
+    text-decoration: none;
+    color: var(--texto-suave);
+  }
+</style>

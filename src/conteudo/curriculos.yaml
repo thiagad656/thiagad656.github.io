@@ -1,0 +1,9 @@
+# Links dos currículos (1 página). Campo vazio não aparece no site.
+
+- id: pt
+  rotulo: Currículo em português
+  url: ""
+
+- id: en
+  rotulo: Résumé in English
+  url: ""

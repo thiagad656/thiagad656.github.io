@@ -1,0 +1,120 @@
+@import '@fontsource/newsreader/latin-500.css';
+@import '@fontsource/newsreader/latin-500-italic.css';
+@import '@fontsource/source-sans-3/latin-400.css';
+@import '@fontsource/source-sans-3/latin-400-italic.css';
+@import '@fontsource/source-sans-3/latin-600.css';
+@import '@fontsource/jetbrains-mono/latin-400.css';
+
+/* Paleta em teste: petróleo e âmbar no escuro.
+   Para testar outra paleta, troque só estes valores. */
+:root {
+  --fundo: #0e1a1e;
+  --superficie: #15262b;
+  --linha: #24393f;
+  --texto: #e6e9e6;
+  --texto-suave: #9aabab;
+  --destaque: #e3a13b;
+
+  --serifa: 'Newsreader', Georgia, serif;
+  --sans: 'Source Sans 3', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --medida: 42rem;
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--fundo);
+  color: var(--texto);
+  font-family: var(--sans);
+  font-size: 112.5%;
+  line-height: 1.65;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--serifa);
+  font-weight: 500;
+  line-height: 1.15;
+  margin: 0;
+  text-wrap: balance;
+}
+
+p,
+ul,
+ol {
+  margin: 0 0 1em;
+}
+
+a {
+  color: var(--texto);
+  text-decoration-color: var(--destaque);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  color: var(--destaque);
+}
+
+:focus-visible {
+  outline: 2px solid var(--destaque);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+strong {
+  font-weight: 600;
+}
+
+/* Um dado com fonte: sublinhado pontilhado + número da nota. */
+.dado {
+  font-family: var(--mono);
+  font-size: 0.88em;
+  font-variant-numeric: tabular-nums;
+  color: var(--destaque);
+  border-bottom: 1px dotted var(--destaque);
+  white-space: nowrap;
+}
+
+.ref {
+  font-family: var(--mono);
+  font-size: 0.68em;
+  vertical-align: 0.5em;
+  margin-left: 0.15em;
+  color: var(--texto-suave);
+  text-decoration: none;
+  font-variant-numeric: tabular-nums;
+}
+
+.ref:hover,
+.ref:focus-visible {
+  color: var(--destaque);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}

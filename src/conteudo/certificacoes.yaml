@@ -1,0 +1,20 @@
+# Certificações. Cole em `verificacao` o link oficial de verificação
+# (Microsoft Learn, Credly, DataCamp). Com link, aparece o marcador "verificado".
+
+- id: pl-300
+  ordem: 1
+  nome: "PL-300: Microsoft Power BI Data Analyst"
+  emissor: Microsoft
+  verificacao: ""
+
+- id: az-900
+  ordem: 2
+  nome: "AZ-900: Microsoft Azure Fundamentals"
+  emissor: Microsoft
+  verificacao: ""
+
+- id: sql-associate
+  ordem: 3
+  nome: SQL Associate
+  emissor: DataCamp
+  verificacao: ""
