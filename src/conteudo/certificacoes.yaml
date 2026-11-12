@@ -5,13 +5,13 @@
   ordem: 1
   nome: "PL-300: Microsoft Power BI Data Analyst"
   emissor: Microsoft
-  verificacao: ""
+  verificacao: https://learn.microsoft.com/api/credentials/share/pt-br/ThiagodaSilva-2231/8A0DF62E4A6ABA54?sharingId=B3CBC33009288C38
 
 - id: az-900
   ordem: 2
   nome: "AZ-900: Microsoft Azure Fundamentals"
   emissor: Microsoft
-  verificacao: ""
+  verificacao: https://learn.microsoft.com/api/credentials/share/pt-br/ThiagodaSilva-2231/E2B30DAB7F4C7B07?sharingId=B3CBC33009288C38
 
 - id: sql-associate
   ordem: 3
@@ -29,4 +29,4 @@
   ordem: 5
   nome: Google IT Automation with Python Professional Certificate
   emissor: Coursera / Google
-  verificacao: ""
+  verificacao: https://www.credly.com/badges/fdb250de-4a8a-4aa6-8a94-0ed178b7c042/public_url
