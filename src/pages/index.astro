@@ -31,7 +31,7 @@ const contatos = [
   descricao={`${perfil.frase} Portfólio de ${perfil.nome}: governança de dados, SQL e Power BI.`}
 >
   <section class="abertura">
-    <h1>{perfil.nome}</h1>
+    <h1 id="nome">{perfil.nome}</h1>
     <p class="cargo">{perfil.cargo}</p>
     <p class="frase">{perfil.frase}</p>
     <p class="apresentacao" set:html={apresentacao} />
@@ -171,7 +171,7 @@ const contatos = [
     max-width: 38rem;
   }
   section {
-    scroll-margin-top: 1rem;
+    scroll-margin-top: 4.5rem;
   }
   section + section {
     margin-top: 4.5rem;

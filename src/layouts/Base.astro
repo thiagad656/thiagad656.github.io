@@ -38,13 +38,15 @@ const base = naHome ? '' : '/';
   </head>
   <body>
     <a class="pular" href="#conteudo">Pular para o conteúdo</a>
-    <header class="topo">
-      <a class="marca" href="/" aria-current={naHome ? 'page' : undefined}>{perfil.nome}</a>
-      <nav aria-label="Principal">
-        <a href={`${base}#trabalho`}>Trabalho</a>
-        <a href={`${base}#trajetoria`}>Trajetória</a>
-        <a href={`${base}#contato`}>Contato</a>
-      </nav>
+    <header class="barra" data-barra>
+      <div class="topo">
+        <a class="marca" href="/" data-marca data-na-home={naHome ? 'sim' : undefined}>{perfil.nome}</a>
+        <nav aria-label="Principal">
+          <a href={`${base}#trabalho`}>Trabalho</a>
+          <a href={`${base}#trajetoria`}>Trajetória</a>
+          <a href={`${base}#contato`}>Contato</a>
+        </nav>
+      </div>
     </header>
     <main id="conteudo">
       <slot />
@@ -56,6 +58,23 @@ const base = naHome ? '' : '/';
         <a href="https://github.com/thiagad656/thiagad656.github.io">Código no GitHub</a>.
       </p>
     </footer>
+    <script>
+      // Barra fixa: ganha uma linha embaixo quando a página rola.
+      // Na home, o nome só aparece na barra depois que o título grande sai da tela.
+      const barra = document.querySelector('[data-barra]');
+      const marca = document.querySelector('[data-marca]');
+      const atualizarBarra = () => barra?.classList.toggle('rolada', window.scrollY > 8);
+      atualizarBarra();
+      window.addEventListener('scroll', atualizarBarra, { passive: true });
+
+      const titulo = document.getElementById('nome');
+      if (marca?.dataset.naHome && titulo) {
+        marca.classList.add('escondida');
+        new IntersectionObserver(([entrada]) => {
+          marca.classList.toggle('escondida', entrada.isIntersecting);
+        }).observe(titulo);
+      }
+    </script>
   </body>
 </html>
 
@@ -72,6 +91,17 @@ const base = naHome ? '' : '/';
   .pular:focus {
     top: 1rem;
   }
+  .barra {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--fundo);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .barra.rolada {
+    border-bottom-color: var(--linha);
+  }
   .topo,
   main,
   .rodape {
@@ -85,12 +115,31 @@ const base = naHome ? '' : '/';
     gap: 0.5rem 1.5rem;
     justify-content: space-between;
     align-items: baseline;
-    padding-block: 1.5rem;
+    padding-block: 1rem;
   }
   .marca {
     font-family: var(--serifa);
     font-size: 1.15rem;
     text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .marca.escondida {
+    opacity: 0;
+    visibility: hidden;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .barra,
+    .marca {
+      transition: none;
+    }
+  }
+  @media (max-width: 30rem) {
+    .marca {
+      display: none;
+    }
+    .topo {
+      justify-content: flex-end;
+    }
   }
   nav {
     display: flex;
