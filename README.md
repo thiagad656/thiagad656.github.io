@@ -36,7 +36,7 @@ npm run build    # gera o site final em dist/
 | `src/conteudo/trabalho/*.md` | Um arquivo por case ou projeto |
 | `src/conteudo/trajetoria.yaml` | Linha do tempo |
 | `src/conteudo/certificacoes.yaml` | Certificações e links de verificação |
-| `src/conteudo/curriculos.yaml` | Links dos currículos (PDFs em `public/cv/`, sem telefone) |
+| `src/conteudo/curriculos.yaml` | Currículos (PDFs em `public/cv/`, sem telefone; a miniatura de cada um é gerada na publicação) |
 | `src/styles/global.css` | Paleta (no topo do arquivo) e tipografia |
 
 Campo vazio não aparece no site. O campo `ordem` define a posição dos itens.

@@ -73,6 +73,7 @@ const curriculos = defineCollection({
   loader: file('src/conteudo/curriculos.yaml'),
   schema: z.object({
     rotulo: z.string(),
+    detalhe: z.string().default(''),
     url: z.string().default(''),
     ordem: z.number().default(99),
   }),

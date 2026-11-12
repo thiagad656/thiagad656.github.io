@@ -113,6 +113,34 @@ const contatos = [
     </ul>
   </section>
 
+  {
+    curriculos.length > 0 && (
+      <section id="curriculo" aria-labelledby="titulo-curriculo">
+        <h2 id="titulo-curriculo">Currículo</h2>
+        <ul class="folhas">
+          {curriculos.map((c) => (
+            <li>
+              <a href={c.data.url} lang={c.id === 'en' ? 'en' : undefined}>
+                <img
+                  src={c.data.url.replace(/\/cv\/(.+)\.pdf$/, '/cv/previas/$1.jpg')}
+                  alt={`Primeira página do currículo: ${c.data.rotulo}`}
+                  width="453"
+                  height="640"
+                  loading="lazy"
+                />
+                <span class="legenda-folha">
+                  <Icone nome="curriculo" />
+                  {c.data.rotulo}
+                  <span class="detalhe">{c.data.detalhe}</span>
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
+
   <section id="contato" aria-labelledby="titulo-contato">
     <h2 id="titulo-contato">Contato</h2>
     <dl class="contatos">
@@ -128,24 +156,6 @@ const contatos = [
             </dd>
           </div>
         ))
-      }
-      {
-        curriculos.length > 0 && (
-          <div>
-            <dt>
-              <Icone nome="curriculo" />
-              Currículo
-            </dt>
-            <dd>
-              {curriculos.map((c, i) => (
-                <>
-                  {i > 0 && <br />}
-                  <a href={c.data.url}>{c.data.rotulo}</a>
-                </>
-              ))}
-            </dd>
-          </div>
-        )
       }
     </dl>
   </section>
@@ -279,6 +289,53 @@ const contatos = [
   .selo::before {
     content: '✓ ';
     color: var(--destaque);
+  }
+  .folhas {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+  .folhas a {
+    display: block;
+    text-decoration: none;
+  }
+  .folhas img {
+    display: block;
+    width: 100%;
+    height: auto;
+    background: #fff;
+    border-radius: 2px;
+    outline: 1px solid var(--linha);
+    outline-offset: 4px;
+    transition: transform 0.2s, outline-color 0.2s;
+  }
+  .folhas a:hover img,
+  .folhas a:focus-visible img {
+    transform: translateY(-4px);
+    outline-color: var(--destaque);
+  }
+  .legenda-folha {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.25rem 0.5rem;
+    margin-top: 1rem;
+    color: var(--texto);
+  }
+  .folhas a:hover .legenda-folha {
+    color: var(--destaque);
+  }
+  .detalhe {
+    color: var(--texto-suave);
+    font-size: 0.85rem;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .folhas img {
+      transition: none;
+    }
   }
   .contatos {
     margin: 0;

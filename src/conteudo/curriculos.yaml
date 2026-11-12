@@ -1,11 +1,14 @@
-# Links dos currículos (1 página). Campo vazio não aparece no site.
+# Currículos (1 página, sem telefone). O PDF fica em public/cv/ e a miniatura
+# é gerada sozinha na publicação, em public/cv/previas/. Campo vazio não aparece.
 
 - id: pt
   ordem: 1
-  rotulo: Currículo em português (PDF, 1 página)
+  rotulo: Português
+  detalhe: PDF, 1 página
   url: /cv/thiago-da-silva-cv-pt.pdf
 
 - id: en
   ordem: 2
-  rotulo: Resume in English (PDF, 1 page)
+  rotulo: English
+  detalhe: PDF, 1 page
   url: /cv/thiago-da-silva-cv-en.pdf
