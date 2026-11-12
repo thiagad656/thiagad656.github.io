@@ -120,7 +120,7 @@ const contatos = [
         <ul class="folhas">
           {curriculos.map((c) => (
             <li>
-              <a href={c.data.url} lang={c.id === 'en' ? 'en' : undefined}>
+              <a href={c.data.url} target="_blank" rel="noopener" lang={c.id === 'en' ? 'en' : undefined}>
                 <img
                   src={c.data.url.replace(/\/cv\/(.+)\.pdf$/, '/cv/previas/$1.jpg')}
                   alt={`Primeira página do currículo: ${c.data.rotulo}`}
@@ -132,6 +132,7 @@ const contatos = [
                   <Icone nome="curriculo" />
                   {c.data.rotulo}
                   <span class="detalhe">{c.data.detalhe}</span>
+                  <span class="sr-only">(abre em nova aba)</span>
                 </span>
               </a>
             </li>
