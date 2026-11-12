@@ -4,10 +4,11 @@
 perfil:
   nome: Thiago da Silva
   cargo: Dados / BI
-  frase: Antes do dashboard, eu pergunto se o dado está certo.
+  frase: Meu trabalho começa quando duas fontes discordam.
   apresentacao: >-
-    Na T-Systems, tirei do papel o controle de [[~250|ativos]] ativos em
-    5 unidades e coloquei num painel Power BI que a liderança usa.
+    Na T-Systems, conciliei CMDB, Active Directory, Dynamics e MDM para tirar
+    do papel o controle de [[~250|ativos]] ativos em 5 unidades, com um painel
+    Power BI que a liderança usa.
   fontes:
     ativos:
       texto: Dado de cliente, arredondado. 247 ativos patrimoniados (204 celulares; 43 notebooks, tablets e desktops) em novembro de 2026.

@@ -6,7 +6,7 @@ O site reúne meus cases e projetos de dados, a trajetória, as certificações 
 
 ## A ideia: todo número tem fonte
 
-Antes do dashboard, eu pergunto se o dado está certo, e o site segue a mesma regra. Cada número aparece destacado com uma nota numerada (`[1]`, `[2]`…) que leva à evidência dele no fim da página: o repositório, o dataset, a documentação oficial ou, quando o dado é de cliente, a indicação de que ele foi arredondado. As certificações levam ao link oficial de verificação do emissor.
+Meu trabalho começa quando duas fontes discordam, e o site segue a mesma lógica: nenhum número aparece sem a origem dele. Cada número aparece destacado com uma nota numerada (`[1]`, `[2]`…) que leva à evidência dele no fim da página: o repositório, o dataset, a documentação oficial ou, quando o dado é de cliente, a indicação de que ele foi arredondado. As certificações levam ao link oficial de verificação do emissor.
 
 Cada case segue a mesma estrutura: o problema, o que construí e o que eu faria diferente.
 
@@ -15,7 +15,7 @@ Cada case segue a mesma estrutura: o problema, o que construí e o que eu faria 
 - [Astro](https://astro.build) 7, gerando um site estático
 - Conteúdo em arquivos YAML e Markdown, sem CMS nem banco de dados
 - Tema escuro único: fundo tinta azul (`#11151c`) com destaque azul-céu (`#6cc6ff`), contraste dentro do padrão WCAG AA
-- Tipografia self-hosted: Newsreader (títulos), Source Sans 3 (texto) e JetBrains Mono (números)
+- Tipografia self-hosted: Source Serif 4 (títulos), Source Sans 3 (texto) e JetBrains Mono (números)
 - Publicação no GitHub Pages via GitHub Actions a cada push na `main`
 
 ## Rodar localmente

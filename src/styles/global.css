@@ -1,5 +1,5 @@
-@import '@fontsource/newsreader/latin-500.css';
-@import '@fontsource/newsreader/latin-500-italic.css';
+@import '@fontsource/source-serif-4/latin-500.css';
+@import '@fontsource/source-serif-4/latin-500-italic.css';
 @import '@fontsource/source-sans-3/latin-400.css';
 @import '@fontsource/source-sans-3/latin-400-italic.css';
 @import '@fontsource/source-sans-3/latin-600.css';
@@ -15,7 +15,7 @@
   --texto-suave: #9ba2ae;
   --destaque: #6cc6ff;
 
-  --serifa: 'Newsreader', Georgia, serif;
+  --serifa: 'Source Serif 4', Georgia, serif;
   --sans: 'Source Sans 3', system-ui, sans-serif;
   --mono: 'JetBrains Mono', ui-monospace, monospace;
 

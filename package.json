@@ -16,8 +16,8 @@
   "homepage": "https://github.com/thiagad656/thiagad656.github.io#readme",
   "dependencies": {
     "@fontsource/jetbrains-mono": "^5.3.0",
-    "@fontsource/newsreader": "^5.3.0",
     "@fontsource/source-sans-3": "^5.3.1",
+    "@fontsource/source-serif-4": "^5.3.1",
     "astro": "^7.4.11"
   },
   "type": "module",
